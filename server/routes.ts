@@ -33,7 +33,29 @@ export async function registerRoutes(
   // Wallet Routes
   app.get(api.wallet.list.path, requireAuth, async (req: any, res) => {
     const userId = req.user.claims.sub;
-    const wallets = await storage.getWallets(userId);
+    let wallets = await storage.getWallets(userId);
+    
+    // Lazy Seed: If no wallets, create default ones
+    if (wallets.length === 0) {
+      await storage.createWallet({
+        userId,
+        symbol: "NEAR",
+        name: "NEAR Protocol",
+        balance: "150.50",
+        decimals: 24,
+        iconUrl: "https://cryptologos.cc/logos/near-protocol-near-logo.png"
+      });
+      await storage.createWallet({
+        userId,
+        symbol: "USDC",
+        name: "USD Coin",
+        balance: "500.00",
+        decimals: 6,
+        iconUrl: "https://cryptologos.cc/logos/usd-coin-usdc-logo.png"
+      });
+       wallets = await storage.getWallets(userId);
+    }
+
     res.json(wallets);
   });
 
