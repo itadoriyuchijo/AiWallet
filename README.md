@@ -1,5 +1,6 @@
 AiWallet - AI-Powered Crypto Wallet
-Your intelligent companion for NEAR Protocol. Send crypto with natural language, get AI-powered insights, and access DeFi in one beautiful app.
+Your intelligent companion for NEAR Protocol. Send crypto with natural language, 
+get AI-powered insights, and access DeFi in one beautiful app.
 �
 �
 Load image
